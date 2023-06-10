@@ -1,18 +1,19 @@
-import os
+import os, json, yaml
 import pandas as pd
-import json
 from datetime import datetime
-import hashlib
 
-NAME = "trailblazer"
-CREATOR = "Itheum"
-INITIAL_CREATION_DATE = "2023-05-22T05:37:17Z"
+with open("config.yaml") as f:
+    cfg = yaml.load(f, Loader=yaml.FullLoader)
+
+NAME = cfg["name"]
+CREATOR = cfg["creator"]
+INITIAL_CREATION_DATE = cfg["initial-creation-date"]
 
 # Get the current script's directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Read the CSV files from the "raw" folder
-df = pd.read_csv(os.path.join(script_dir, "input", "2023.csv"))
+df = pd.read_csv(os.path.join(script_dir, "input", "trailblazer.csv"))
 
 # Convert the 'Date' column to datetime format
 df["Date"] = pd.to_datetime(df["Date"], format="%d/%m/%Y")
