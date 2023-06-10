@@ -1,2 +1,1 @@
-wheel
-multiversx-sdk-cli
+pandas
